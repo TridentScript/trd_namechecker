@@ -25,10 +25,10 @@ Community-driven servers requiring identity verification.
 ![image](https://github.com/user-attachments/assets/7e2c97f2-d440-4539-a9f5-993b182c950f)
 
 # Steps to Configure
-Replace BotToken with your Discord Bot Token.
+Replace ``BotToken`` with your Discord Bot Token.
 
-Replace GuildId with your Discord Server ID.
+Replace ``GuildId`` with your Discord Server ID.
 
-Replace Accepted with the Channel ID for logging accepted connections.
+Replace ``Accepted`` with the Channel ID for logging accepted connections.
 
-Replace Rejected with the Channel ID for logging rejected connections.
+Replace ``Rejected`` with the Channel ID for logging rejected connections.
