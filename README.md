@@ -32,3 +32,6 @@ Replace ``GuildId`` with your Discord Server ID.
 Replace ``Accepted`` with the Channel ID for logging accepted connections.
 
 Replace ``Rejected`` with the Channel ID for logging rejected connections.
+
+# Support Server
+[Discord](https://discord.gg/3UfwMR2f57)
