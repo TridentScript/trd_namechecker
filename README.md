@@ -11,7 +11,7 @@ Enhance your FiveM server's security and player identity integrity with this Dis
 
 **Easy Integration**: Works seamlessly with any framework and popular Discord bots for streamlined setup.
 
-**Improved Community Trust**: Helps maintain accountability and consistency among players for a better roleplay or multiplayer experience.
+**Improved Community Trust**: Helps maintain accountability and consistency among players for a better roleplay experience.
 
 Ideal For:
 
