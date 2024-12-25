@@ -15,8 +15,8 @@ Enhance your FiveM server's security and player identity integrity with this Dis
 
 Ideal For:
 
-Roleplay servers with strict naming policies.
-Community-driven servers requiring identity verification.
+* Roleplay servers with strict naming policies.
+* Community-driven servers requiring identity verification.
 
 # ACCEPTED
 ![image](https://github.com/user-attachments/assets/632c3047-eec4-45dc-ac16-4a7fda46bf8d)
