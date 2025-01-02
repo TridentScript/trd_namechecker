@@ -25,7 +25,7 @@ Ideal For:
 ![image](https://github.com/user-attachments/assets/7e2c97f2-d440-4539-a9f5-993b182c950f)
 
 # Steps to Configure
-Replace ``BotToken`` with your Discord Bot Token.
+Put ``BotToken`` with your Discord Bot Token in ``server.lua`` ``line no:1``.
 
 Replace ``GuildId`` with your Discord Server ID.
 
