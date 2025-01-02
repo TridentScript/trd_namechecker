@@ -1,5 +1,4 @@
 Config = {}
-Config.BotToken ="" ---Bot Token
 Config.GuildId = ""----Discord Server Id
 Config.Accepted = ""--- Accept Log Channel Id
 Config.Rejected = ""--- Reject Channel Id
