@@ -33,5 +33,8 @@ Replace ``Accepted`` with the Channel ID for logging accepted connections.
 
 Replace ``Rejected`` with the Channel ID for logging rejected connections.
 
+# DOCS
+[VISIT](https://trd.gitbook.io/trd-scripts/scripts/trd_namechecker)
+
 # Support Server
 [Discord](https://discord.gg/3UfwMR2f57)
