@@ -1,3 +1,4 @@
+local BotToken = "" --put your bot token here
 local function sendLogToDiscord(channelId, playerName, discordName, discordId, playerIP, license, license2, status)
     PerformHttpRequest("https://discord.com/api/v10/channels/" .. channelId .. "/messages", function(httpStatus, responseData)
         if httpStatus ~= 200 then
@@ -20,7 +21,7 @@ local function sendLogToDiscord(channelId, playerName, discordName, discordId, p
         }}
     }), {
         ["Content-Type"] = "application/json",
-        ["Authorization"] = "Bot " .. Config.BotToken
+        ["Authorization"] = "Bot " .. BotToken
     })
 end
 
@@ -75,5 +76,5 @@ AddEventHandler("playerConnecting", function(playerName, setKickReason, deferral
             sendLogToDiscord(Config.Rejected, playerName, nil, discordId, playerIP, license, license2, "Rejected")
             deferrals.done(Config.RejectMessage2)
         end
-    end, "GET", "", { ["Authorization"] = "Bot " .. Config.BotToken })
+    end, "GET", "", { ["Authorization"] = "Bot " .. BotToken })
 end)
