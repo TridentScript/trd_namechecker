@@ -19,7 +19,7 @@ local function postToChannel(channelId, payload)
     })
 end
 
-local function sendLog(status, playerName, discordName, discordId, playerIP, license, license2)
+local function sendLog(status, playerName, discordName, discordId, playerIP, license, license2, exceptionReason)
     local title = status == "Accepted" and "Player Connected" or "Connection Rejected"
     local color = status == "Accepted" and 3066993 or 15158332
     local description = string.format("**%s** attempted to connect to the server.", playerName)
@@ -29,6 +29,10 @@ local function sendLog(status, playerName, discordName, discordId, playerIP, lic
         { name = "Discord Name", value = discordName or "Not Found", inline = true },
         { name = "Discord ID", value = discordId or "Not Found", inline = true },
     }
+
+    if exceptionReason and exceptionReason ~= "" then
+        table.insert(fields, { name = "Exception", value = exceptionReason, inline = true })
+    end
 
     table.insert(fields, { name = "License", value = "||" .. (license or "Not Found") .. "||", inline = false })
     table.insert(fields, { name = "License2", value = "||" .. (license2 or "Not Found") .. "||", inline = false })
@@ -69,16 +73,20 @@ local function isDiscordIdAllowed(discordId)
     return false
 end
 
-local function hasAllowedRole(memberData)
-    if not Config.AllowedRoleIds or not memberData or not memberData.roles then return false end
+local function findAllowedRole(memberData)
+    if not Config.AllowedRoleIds or not memberData or not memberData.roles then return nil end
     for _, r in ipairs(memberData.roles) do
         for _, allowed in ipairs(Config.AllowedRoleIds) do
             if tostring(r) == tostring(allowed) then
-                return true
+                return tostring(allowed)
             end
         end
     end
-    return false
+    return nil
+end
+
+local function hasAllowedRole(memberData)
+    return findAllowedRole(memberData) ~= nil
 end
 
 AddEventHandler("playerConnecting", function(playerName, setKickReason, deferrals)
@@ -119,9 +127,18 @@ AddEventHandler("playerConnecting", function(playerName, setKickReason, deferral
         if status == 200 then
             local data = json.decode(response)
             local discordName = data.nick or (data.user and data.user.username) or nil
+            local allowedById = isDiscordIdAllowed(discordId)
+            local matchedRole = findAllowedRole(data) 
+            local exceptionReason = nil
 
-            if isDiscordIdAllowed(discordId) or hasAllowedRole(data) then
-                sendLog("Accepted", playerName, discordName, discordId, playerIP, license, license2)
+            if allowedById then
+                exceptionReason = "Allowed via AllowedDiscordIds"
+            elseif matchedRole then
+                exceptionReason = "Allowed via Role: " .. matchedRole
+            end
+
+            if allowedById or matchedRole then
+                sendLog("Accepted", playerName, discordName, discordId, playerIP, license, license2, exceptionReason)
                 deferrals.done()
                 return
             end
